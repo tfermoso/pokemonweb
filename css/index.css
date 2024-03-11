@@ -27,6 +27,10 @@ header{
     /* Estilos que deseas aplicar a los dos primeros elementos */
     border-right: 1px solid blue;
 }
+#loading{
+    display: block;
+    margin: 0 auto;
+}
 
 
 /* Media query para tamaños de pantalla más pequeños donde quieres ocultar el h1 */
