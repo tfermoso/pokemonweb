@@ -1,0 +1,43 @@
+#logo{
+    width: 200px;
+}
+
+header{
+    display: flex;
+    justify-content: space-between; 
+}
+.container{
+    width: 80%;
+    margin:0 auto;
+}
+.barras-menu{
+    display: none;
+}
+.estilo-menu{
+    list-style: none;
+   
+}
+.estilo-menu a{
+    text-decoration: none;
+    display: block;
+    margin: 10px;
+    font-size: 30px;
+}
+
+
+
+/* Media query para tamaños de pantalla más pequeños donde quieres ocultar el h1 */
+@media screen and (max-width: 376px) {
+    .barras-menu{
+        display: block;
+    }
+    h1 {
+        display: none; /* Oculta el h1 */
+    }
+    header{
+        justify-content: space-around;
+    }
+    .menu-movil{
+        display: none;
+    }
+}
