@@ -46,5 +46,9 @@ header{
     .menu-movil{ 
         display: none;
     }
+    #menu-movil li:nth-child(-n+2) {
+        /* Estilos que deseas aplicar a los dos primeros elementos */
+        border:none;
+    }
     
 }
