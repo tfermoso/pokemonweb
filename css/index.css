@@ -15,7 +15,7 @@ header{
 }
 .estilo-menu{
     list-style: none;
-   
+    display: flex;  
 }
 .estilo-menu a{
     text-decoration: none;
@@ -37,7 +37,11 @@ header{
     header{
         justify-content: space-around;
     }
-    .menu-movil{
+    .estilo-menu{
+        display: inline;
+    }
+    .menu-movil{ 
         display: none;
     }
+    
 }
