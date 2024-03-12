@@ -14,12 +14,12 @@ window.onload = () => {
             document.getElementById("menu-movil").classList.add("menu-movil");
         }
     }
-    let buttonNext=document.getElementById("next");
-    buttonNext.onclick=()=>{
+    let buttonNext = document.getElementById("next");
+    buttonNext.onclick = () => {
         getDataUrl(next)
     }
-    let buttonPrevious=document.getElementById("previous");
-    buttonPrevious.onclick=()=>{
+    let buttonPrevious = document.getElementById("previous");
+    buttonPrevious.onclick = () => {
         getDataUrl(previous)
     }
     //Solicitar primeros pokemon
@@ -40,16 +40,16 @@ function getDataUrl(url) {
             return resp.json();
         })
         .then(data => {
-            if(data.next==null){
-                document.getElementById("next").style.display="none";
-            }else{
-                document.getElementById("next").style.display="inline";           
+            if (data.next == null) {
+                document.getElementById("next").style.display = "none";
+            } else {
+                document.getElementById("next").style.display = "inline";
             }
             next = data.next;
-            if(data.previous==null){
-                document.getElementById("previous").style.display="none";
-            }else{
-                document.getElementById("previous").style.display="inline";           
+            if (data.previous == null) {
+                document.getElementById("previous").style.display = "none";
+            } else {
+                document.getElementById("previous").style.display = "inline";
             }
             previous = data.previous;
             if (document.getElementById("loading"))
@@ -61,7 +61,7 @@ function getDataUrl(url) {
                     pokemon[pk.name] = { url: pk.url }
                 }
             }
-            cargarDatosPokemon();
+            cargarDatosPokemon(data.results);
 
         })
         .catch(error => {
@@ -85,9 +85,12 @@ function fetchPokemonRetardada(url) {
             console.error('There was a problem with the fetch operation:', error);
         });
 }
-function cargarDatosPokemon() {
-    for (const pk in pokemon) {
-        setTimeout(fetchPokemonRetardada, 2000, pokemon[pk].url);
+function cargarDatosPokemon(listaNueva) {
+    for (const pk in listaNueva) {
+        if (listaNueva[pk].url != undefined)
+            setTimeout(fetchPokemonRetardada, 1000, listaNueva[pk].url);
+        else
+           extractInfoPokemon(listaNueva[pk])
     }
 }
 
@@ -99,7 +102,7 @@ function extractInfoPokemon(info) {
         experience: info.base_experience
     }
     let selector = "#" + info.name + " img";
-    document.querySelector(selector).src = info.sprites.front_default;
+    document.querySelector(selector).src = pokemon[info.name].img;
     selector = "#" + info.name + " span";
     let textos = document.querySelectorAll(selector);
     textos[0].innerHTML = pokemon[info.name].types;
