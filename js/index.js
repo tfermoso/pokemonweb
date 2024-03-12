@@ -26,6 +26,7 @@ window.onload = () => {
         .then(data => {
             document.getElementById("loading").style.display = "none";
             //console.log(data); // Aquí puedes trabajar con los datos de respuesta
+            mostarDatosIniciales(data.results)
             for (const pk of data.results) {
                 if (pokemon[pk.name] == undefined) {
                     pokemon[pk.name] = { url: pk.url }
@@ -49,7 +50,7 @@ function cargarDatosPokemon() {
                 return resp.json();
             })
             .then(datos => {
-               extractInfoPokemon(datos)
+                extractInfoPokemon(datos)
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
@@ -58,11 +59,30 @@ function cargarDatosPokemon() {
 }
 
 function extractInfoPokemon(info) {
-    pokemon[info.name]={
-        img:info.sprites.front_default,
-        types:info.types.map(t=>t.type.name),
-        id:info.id,
-        experience:info.base_experience     
+    pokemon[info.name] = {
+        img: info.sprites.front_default,
+        types: info.types.map(t => t.type.name),
+        id: info.id,
+        experience: info.base_experience
     }
 }
 
+function mostarDatosIniciales(listaPk) {
+    var contenidoPK = "";
+    for (const pk in listaPk) {
+        if (Object.hasOwnProperty.call(listaPk, pk)) {
+            const element = listaPk[pk];
+            contenidoPK += `
+            <article>
+                <h3>${element.name}</h3>
+                <img src="img/loadin.gif" alt="">
+                <div>
+                    <p><label>Types:</label></p>
+                    <p><label>Id:</label></p>
+                    <p><label>Experience</label></p> 
+                </div>
+            </article>`;
+        }
+    }
+    document.getElementById("containerpk").innerHTML=contenidoPK;
+}
