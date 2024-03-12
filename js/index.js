@@ -70,6 +70,12 @@ function extractInfoPokemon(info) {
     }
     let selector="#"+info.name +" img";
     document.querySelector(selector).src=info.sprites.front_default;
+    selector="#"+info.name +" span";
+    let textos=document.querySelectorAll(selector);
+    textos[0].innerHTML=pokemon[info.name].types;
+    textos[1].innerHTML=pokemon[info.name].id;
+    textos[2].innerHTML=pokemon[info.name].experience;
+
 }
 
 function mostarDatosIniciales(listaPk) {
@@ -82,9 +88,9 @@ function mostarDatosIniciales(listaPk) {
                 <h3>${element.name}</h3>
                 <img src="img/loading.gif" alt="">
                 <div>
-                    <p><label>Types:</label></p>
-                    <p><label>Id:</label></p>
-                    <p><label>Experience</label></p> 
+                    <p><label>Types:</label><span></span></p>
+                    <p><label>Id:</label><span></span></p>
+                    <p><label>Experience</label><span></span></p> 
                 </div>
             </article>`;
         }
