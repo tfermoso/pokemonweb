@@ -59,6 +59,12 @@ header{
 #next,#previous{
     cursor: pointer;
 }
+article img {
+    transition: transform 0.5s ease; /* Animación de transformación CSS */
+}
+.rotar {
+    transform: rotateY(180deg); /* Gira la imagen 180 grados en el eje Y */
+}
 
 /* Media query para tamaños de pantalla más pequeños donde quieres ocultar el h1 */
 @media screen and (max-width: 376px) {

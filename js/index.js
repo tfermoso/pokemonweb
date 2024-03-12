@@ -2,6 +2,9 @@
 var pokemon = {};
 var next = "";
 var previous = "";
+var intervalo;
+var imagen;
+var pokemon_selected;
 window.onload = () => {
 
     let menu = document.getElementById("barras-menu");
@@ -26,8 +29,43 @@ window.onload = () => {
     let url = "https://pokeapi.co/api/v2/pokemon";
     //mostramos loading
     getDataUrl(url);
+
+    
+    
 }
 
+function asociarEventosArticle() {
+    let articles=document.getElementsByTagName("article");
+    for (let index = 0; index < articles.length; index++) {
+        const article = articles[index];
+        article.addEventListener("mouseenter", function(e) {
+            imagen=e.currentTarget.querySelector("img");
+            pokemon_selected=e.currentTarget.id;
+            // Inicia el intervalo para cambiar la imagen cada 500ms
+            intervalo = setInterval(function() {
+                // Cambia la imagen entre imagen1 y imagen2
+                if (imagen.src === pokemon[pokemon_selected].sprite[0]) {
+                    imagen.classList.add("rotar");
+                    imagen.src = pokemon[pokemon_selected].sprite[1];
+                } else {
+                    imagen.classList.add("rotar");
+                    imagen.src = pokemon[pokemon_selected].sprite[0];
+                }
+            }, 500);
+        });
+    
+        // Manejador de evento cuando el mouse sale del artículo
+    article.addEventListener("mouseleave", function(e) {
+        // Detiene el intervalo
+        clearInterval(intervalo);
+        // Restaura la imagen a la original
+        
+        imagen.src = pokemon[pokemon_selected].sprite[0];
+    });
+    }
+    // Manejador de evento cuando el mouse entra en el artículo
+    
+}
 
 function getDataUrl(url) {
     if (document.getElementById("loading"))
@@ -99,7 +137,8 @@ function extractInfoPokemon(info) {
         img: info.sprites.front_default,
         types: info.types.map(t => t.type.name),
         id: info.id,
-        experience: info.base_experience
+        experience: info.base_experience,
+        sprite:[info.sprites.front_default,info.sprites.back_default]
     }
     let selector = "#" + info.name + " img";
     document.querySelector(selector).src = pokemon[info.name].img;
@@ -129,4 +168,5 @@ function mostarDatosIniciales(listaPk) {
         }
     }
     document.getElementById("containerpk").innerHTML = contenidoPK;
+    asociarEventosArticle();
 }
