@@ -1,5 +1,7 @@
 
 var pokemon = {};
+var next = "";
+var previous = "";
 window.onload = () => {
 
     let menu = document.getElementById("barras-menu");
@@ -12,7 +14,14 @@ window.onload = () => {
             document.getElementById("menu-movil").classList.add("menu-movil");
         }
     }
-
+    let buttonNext=document.getElementById("next");
+    buttonNext.onclick=()=>{
+        getDataUrl(next)
+    }
+    let buttonPrevious=document.getElementById("previous");
+    buttonPrevious.onclick=()=>{
+        getDataUrl(previous)
+    }
     //Solicitar primeros pokemon
     let url = "https://pokeapi.co/api/v2/pokemon";
     //mostramos loading
@@ -31,6 +40,18 @@ function getDataUrl(url) {
             return resp.json();
         })
         .then(data => {
+            if(data.next==null){
+                document.getElementById("next").style.display="none";
+            }else{
+                document.getElementById("next").style.display="inline";           
+            }
+            next = data.next;
+            if(data.previous==null){
+                document.getElementById("previous").style.display="none";
+            }else{
+                document.getElementById("previous").style.display="inline";           
+            }
+            previous = data.previous;
             if (document.getElementById("loading"))
                 document.getElementById("loading").style.display = "none";
             //console.log(data); // Aquí puedes trabajar con los datos de respuesta
@@ -50,23 +71,23 @@ function getDataUrl(url) {
 
 function fetchPokemonRetardada(url) {
     fetch(url)
-    .then(resp => {
-        if (!resp.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return resp.json();
-    })
-    .then(datos => {
-        extractInfoPokemon(datos);
-        
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-    });
+        .then(resp => {
+            if (!resp.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return resp.json();
+        })
+        .then(datos => {
+            extractInfoPokemon(datos);
+
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
 }
 function cargarDatosPokemon() {
     for (const pk in pokemon) {
-      setTimeout(fetchPokemonRetardada,2000,pokemon[pk].url); 
+        setTimeout(fetchPokemonRetardada, 2000, pokemon[pk].url);
     }
 }
 
@@ -77,13 +98,13 @@ function extractInfoPokemon(info) {
         id: info.id,
         experience: info.base_experience
     }
-    let selector="#"+info.name +" img";
-    document.querySelector(selector).src=info.sprites.front_default;
-    selector="#"+info.name +" span";
-    let textos=document.querySelectorAll(selector);
-    textos[0].innerHTML=pokemon[info.name].types;
-    textos[1].innerHTML=pokemon[info.name].id;
-    textos[2].innerHTML=pokemon[info.name].experience;
+    let selector = "#" + info.name + " img";
+    document.querySelector(selector).src = info.sprites.front_default;
+    selector = "#" + info.name + " span";
+    let textos = document.querySelectorAll(selector);
+    textos[0].innerHTML = pokemon[info.name].types;
+    textos[1].innerHTML = pokemon[info.name].id;
+    textos[2].innerHTML = pokemon[info.name].experience;
 
 }
 
