@@ -1,3 +1,4 @@
+var pokemon={};
 window.onload = () => {
 
     let menu = document.getElementById("barras-menu");
@@ -24,7 +25,12 @@ window.onload = () => {
         })
         .then(data => {
             document.getElementById("loading").style.display="none";
-            console.log(data); // Aquí puedes trabajar con los datos de respuesta
+            //console.log(data); // Aquí puedes trabajar con los datos de respuesta
+            for (const pk of data.results) {
+                if(pokemon[pk.name]==undefined){
+                    pokemon[pk.name]={url: pk.url}
+                }
+            }
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
