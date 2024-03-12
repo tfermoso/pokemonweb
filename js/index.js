@@ -42,23 +42,25 @@ window.onload = () => {
             console.error('There was a problem with the fetch operation:', error);
         });
 }
-
+function fetchPokemonRetardada(url) {
+    fetch(url)
+    .then(resp => {
+        if (!resp.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return resp.json();
+    })
+    .then(datos => {
+        extractInfoPokemon(datos);
+        
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+}
 function cargarDatosPokemon() {
     for (const pk in pokemon) {
-        fetch(pokemon[pk].url)
-            .then(resp => {
-                if (!resp.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return resp.json();
-            })
-            .then(datos => {
-                setTimeout(extractInfoPokemon,2000,datos);
-                
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
+      setTimeout(fetchPokemonRetardada,2000,pokemon[pk].url); 
     }
 }
 
