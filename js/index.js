@@ -68,6 +68,8 @@ function extractInfoPokemon(info) {
         id: info.id,
         experience: info.base_experience
     }
+    let selector="#"+info.name +" img";
+    document.querySelector(selector).src=info.sprites.front_default;
 }
 
 function mostarDatosIniciales(listaPk) {
@@ -76,7 +78,7 @@ function mostarDatosIniciales(listaPk) {
         if (Object.hasOwnProperty.call(listaPk, pk)) {
             const element = listaPk[pk];
             contenidoPK += `
-            <article>
+            <article id="${element.name}">
                 <h3>${element.name}</h3>
                 <img src="img/loading.gif" alt="">
                 <div>
