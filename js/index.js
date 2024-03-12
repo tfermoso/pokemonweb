@@ -53,7 +53,8 @@ function cargarDatosPokemon() {
                 return resp.json();
             })
             .then(datos => {
-                extractInfoPokemon(datos)
+                setTimeout(extractInfoPokemon,2000,datos);
+                
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
