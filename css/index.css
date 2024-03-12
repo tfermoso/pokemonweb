@@ -49,6 +49,13 @@ header{
 #containerpk article img{
     width: 80px;
 }
+.navegacion{
+    text-align: right;
+    margin-right: 15px;
+}
+#next{
+    margin-left: 10px;
+}
 
 /* Media query para tamaños de pantalla más pequeños donde quieres ocultar el h1 */
 @media screen and (max-width: 376px) {
