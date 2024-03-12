@@ -40,6 +40,14 @@ header{
     flex-direction: column;
     align-items: center;
 }
+#containerpk{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+#containerpk article img{
+    width: 80px;
+}
 
 /* Media query para tamaños de pantalla más pequeños donde quieres ocultar el h1 */
 @media screen and (max-width: 376px) {

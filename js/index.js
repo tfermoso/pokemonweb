@@ -1,3 +1,4 @@
+
 var pokemon = {};
 window.onload = () => {
 
@@ -15,7 +16,8 @@ window.onload = () => {
     //Solicitar primeros pokemon
     let url = "https://pokeapi.co/api/v2/pokemon";
     //mostramos loading
-    document.getElementById("loading").style.display = "block"
+    if (document.getElementById("loading"))
+        document.getElementById("loading").style.display = "block"
     fetch(url)
         .then(resp => {
             if (!resp.ok) {
@@ -24,7 +26,8 @@ window.onload = () => {
             return resp.json();
         })
         .then(data => {
-            document.getElementById("loading").style.display = "none";
+            if (document.getElementById("loading"))
+                document.getElementById("loading").style.display = "none";
             //console.log(data); // Aquí puedes trabajar con los datos de respuesta
             mostarDatosIniciales(data.results)
             for (const pk of data.results) {
@@ -75,7 +78,7 @@ function mostarDatosIniciales(listaPk) {
             contenidoPK += `
             <article>
                 <h3>${element.name}</h3>
-                <img src="img/loadin.gif" alt="">
+                <img src="img/loading.gif" alt="">
                 <div>
                     <p><label>Types:</label></p>
                     <p><label>Id:</label></p>
@@ -84,5 +87,5 @@ function mostarDatosIniciales(listaPk) {
             </article>`;
         }
     }
-    document.getElementById("containerpk").innerHTML=contenidoPK;
+    document.getElementById("containerpk").innerHTML = contenidoPK;
 }
