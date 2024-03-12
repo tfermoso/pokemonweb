@@ -56,6 +56,9 @@ header{
 #next{
     margin-left: 10px;
 }
+#next,#previous{
+    cursor: pointer;
+}
 
 /* Media query para tamaños de pantalla más pequeños donde quieres ocultar el h1 */
 @media screen and (max-width: 376px) {
