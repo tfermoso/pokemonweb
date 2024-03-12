@@ -49,10 +49,20 @@ function cargarDatosPokemon() {
                 return resp.json();
             })
             .then(datos => {
-                console.log(datos);
+               extractInfoPokemon(datos)
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
             });
     }
 }
+
+function extractInfoPokemon(info) {
+    pokemon[info.name]={
+        img:info.sprites.front_default,
+        types:info.types.map(t=>t.type.name),
+        id:info.id,
+        experience:info.base_experience     
+    }
+}
+
