@@ -13,16 +13,17 @@ window.onload = () => {
 
     //Solicitar primeros pokemon
     let url = "https://pokeapi.co/api/v2/pokemon";
-    
+    //mostramos loading
+    document.getElementById("loading").style.display="block"
     fetch(url)
-        .then(response => {
-            if (!response.ok) {
+        .then(resp => {
+            if (!resp.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.json();
+            return resp.json();
         })
         .then(data => {
-
+            document.getElementById("loading").style.display="none";
             console.log(data); // Aquí puedes trabajar con los datos de respuesta
         })
         .catch(error => {
