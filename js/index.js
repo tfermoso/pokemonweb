@@ -16,6 +16,11 @@ window.onload = () => {
     //Solicitar primeros pokemon
     let url = "https://pokeapi.co/api/v2/pokemon";
     //mostramos loading
+    getDataUrl(url);
+}
+
+
+function getDataUrl(url) {
     if (document.getElementById("loading"))
         document.getElementById("loading").style.display = "block"
     fetch(url)
@@ -42,6 +47,7 @@ window.onload = () => {
             console.error('There was a problem with the fetch operation:', error);
         });
 }
+
 function fetchPokemonRetardada(url) {
     fetch(url)
     .then(resp => {
