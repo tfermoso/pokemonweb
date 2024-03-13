@@ -67,7 +67,7 @@ article img {
 }
 
 /* Media query para tamaños de pantalla más pequeños donde quieres ocultar el h1 */
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 576px) {
     .barras-menu{
         display: block;
     }
