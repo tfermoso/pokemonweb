@@ -1,0 +1,99 @@
+#logo{
+    width: 200px;
+}
+
+header{
+    display: flex;
+    justify-content: space-between; 
+}
+.container{
+    width: 80%;
+    margin:0 auto;
+}
+.barras-menu{
+    display: none;
+}
+.estilo-menu{
+    list-style: none;
+    display: flex;  
+}
+.estilo-menu a{
+    text-decoration: none;
+    display: block;
+    margin: 10px;
+    font-size: 30px;
+}
+#menu-movil li:nth-child(-n+2) {
+    /* Estilos que deseas aplicar a los dos primeros elementos */
+    border-right: 1px solid blue;
+}
+#loading{
+    display: block;
+    margin: 0 auto;
+    display: none;
+}
+#containerpk article{
+    width: 20%;
+    border: 1px solid blue;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5px;
+}
+#containerpk{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+#containerpk article img{
+    width: 80px;
+}
+.navegacion{
+    text-align: right;
+    margin-right: 15px;
+}
+#next{
+    margin-left: 10px;
+}
+#next,#previous{
+    cursor: pointer;
+}
+article img {
+    transition: transform 0.5s ease; /* Animación de transformación CSS */
+}
+.rotar {
+    transform: rotateY(180deg); /* Gira la imagen 180 grados en el eje Y */
+}
+
+/* Media query para tamaños de pantalla más pequeños donde quieres ocultar el h1 */
+@media screen and (max-width: 376px) {
+    .barras-menu{
+        display: block;
+    }
+    h1 {
+        display: none; /* Oculta el h1 */
+    }
+    header{
+        justify-content: space-around;
+    }
+    .estilo-menu{
+        display: inline;
+    }
+    .menu-movil{ 
+        display: none;
+    }
+    #menu-movil li:nth-child(-n+2) {
+        /* Estilos que deseas aplicar a los dos primeros elementos */
+        border:none;
+    }
+    #containerpk article{
+        width: 100%;
+        border: 1px solid blue;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}
